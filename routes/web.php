@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\RegisterController;
+
 Route::get('/', function () {
     // return view('welcome');
     return view('test');
 });
 
-// Route to show the registration form
-Route::get('/register', function () {
-    return view('auth.register');
+Route::get('/register', [RegisterController::class, 'show'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+Route::get('/login', function () {
+    return view('auth.login');
 });
